@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Perforated metal cable tray illustration</title>
+  <desc id="desc">An original isometric illustration of a straight perforated steel cable tray. Illustrative, not a LAMCO product photograph.</desc>
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#f7f9fb"/><stop offset="1" stop-color="#e5ebf0"/></linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbfc"/><stop offset=".28" stop-color="#b9c4cd"/><stop offset=".58" stop-color="#eef2f5"/><stop offset="1" stop-color="#7c8b98"/></linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dce3e8"/><stop offset="1" stop-color="#8998a4"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9eef2"/><stop offset=".5" stop-color="#aab7c1"/><stop offset="1" stop-color="#d8dfe4"/></linearGradient>
+    <pattern id="holes" width="78" height="54" patternTransform="skewY(-16)" patternUnits="userSpaceOnUse"><ellipse cx="18" cy="20" rx="8" ry="5" fill="#71818d" opacity=".78"/><ellipse cx="18" cy="18" rx="5" ry="2.3" fill="#f7f9fa" opacity=".9"/><ellipse cx="57" cy="43" rx="8" ry="5" fill="#71818d" opacity=".78"/><ellipse cx="57" cy="41" rx="5" ry="2.3" fill="#f7f9fa" opacity=".9"/></pattern>
+    <clipPath id="trayFloor"><path d="M210 355 720 190 1030 350 510 520Z"/></clipPath>
+    <filter id="shadow" x="-.2" y="-.2" width="1.5" height="1.6"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <ellipse cx="650" cy="555" rx="430" ry="64" fill="#33495b" opacity=".17" filter="url(#shadow)"/>
+  <path d="M210 355 720 190 1030 350 510 520Z" fill="url(#floor)" stroke="#748491" stroke-width="5"/>
+  <path d="M210 355 720 190 720 126 210 291Z" fill="url(#rail)" stroke="#71818d" stroke-width="5"/>
+  <path d="M510 520 1030 350 1030 286 510 456Z" fill="url(#side)" stroke="#71818d" stroke-width="5"/>
+  <path d="M210 291 720 126 720 190 210 355Z" fill="url(#rail)" stroke="#71818d" stroke-width="5"/>
+  <path d="M510 456 1030 286 1030 350 510 520Z" fill="url(#rail)" stroke="#71818d" stroke-width="5"/>
+  <path d="M210 355 720 190 1030 350 510 520Z" fill="url(#holes)" clip-path="url(#trayFloor)" opacity=".92"/>
+  <path d="M225 343 717 184M526 505 1015 345" fill="none" stroke="#fff" stroke-width="5" opacity=".6"/>
+  <path d="M272 370 272 430M965 333 965 393" stroke="#657581" stroke-width="4" opacity=".65"/>
+  <circle cx="282" cy="341" r="6" fill="#f8fafb"/><circle cx="1000" cy="319" r="6" fill="#f8fafb"/>
+</svg>

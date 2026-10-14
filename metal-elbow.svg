@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="title desc">
+  <title id="title">Cable tray elbow illustration</title>
+  <desc id="desc">Original isometric illustration of a generic 90-degree perforated cable tray elbow, not a LAMCO product image.</desc>
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#f8fafb"/><stop offset="1" stop-color="#e5ebef"/></linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9fbfc"/><stop offset=".44" stop-color="#aebbc4"/><stop offset=".72" stop-color="#eef2f4"/><stop offset="1" stop-color="#7d8c97"/></linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7dfe4"/><stop offset="1" stop-color="#83929d"/></linearGradient>
+    <filter id="shadow" x="-.2" y="-.2" width="1.5" height="1.5"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0a2342" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="960" height="620" rx="18" fill="url(#bg)"/>
+  <path d="M116 487 579 223 846 324 383 586Z" fill="#dfe5e9"/>
+  <g filter="url(#shadow)" stroke="#71818d" stroke-width="7" stroke-linejoin="round">
+    <path d="M144 367 433 210 640 286 343 451Z" fill="url(#steel)"/>
+    <path d="m343 451 297-165v102L343 557Z" fill="url(#wall)"/>
+    <path d="M433 210 599 128 808 207 640 286Z" fill="url(#steel)"/>
+    <path d="m640 286 168-79v102l-168 79z" fill="url(#wall)"/>
+    <path d="M144 367 343 451 343 557 144 469Z" fill="url(#wall)"/>
+    <path d="M343 451 640 286 808 349 510 516Z" fill="url(#steel)"/>
+  </g>
+  <g fill="#71818d" stroke="#f8fafb" stroke-width="3" opacity=".92">
+    <ellipse cx="203" cy="354" rx="12" ry="7" transform="rotate(-28 203 354)"/>
+    <ellipse cx="257" cy="324" rx="12" ry="7" transform="rotate(-28 257 324)"/>
+    <ellipse cx="311" cy="294" rx="12" ry="7" transform="rotate(-28 311 294)"/>
+    <ellipse cx="369" cy="265" rx="12" ry="7" transform="rotate(-28 369 265)"/>
+    <ellipse cx="420" cy="238" rx="12" ry="7" transform="rotate(-28 420 238)"/>
+    <ellipse cx="394" cy="420" rx="12" ry="7" transform="rotate(-28 394 420)"/>
+    <ellipse cx="449" cy="390" rx="12" ry="7" transform="rotate(-28 449 390)"/>
+    <ellipse cx="502" cy="360" rx="12" ry="7" transform="rotate(-28 502 360)"/>
+    <ellipse cx="556" cy="330" rx="12" ry="7" transform="rotate(-28 556 330)"/>
+    <ellipse cx="690" cy="270" rx="12" ry="7" transform="rotate(-28 690 270)"/>
+    <ellipse cx="742" cy="245" rx="12" ry="7" transform="rotate(-28 742 245)"/>
+  </g>
+  <rect x="52" y="48" width="225" height="42" rx="3" fill="#0a2342"/>
+  <text x="70" y="77" fill="#fff" font-family="Arial,sans-serif" font-size="20" font-weight="700">ILLUSTRATION · 90°</text>
+</svg>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ t.our_products }} | LAMCO1</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <a class="logo" href="{{ url_for('home') }}">LAMCO<span>1</span></a>
+
+    <nav aria-label="Main navigation">
+        <a href="{{ url_for('home') }}">{{ t.home }}</a>
+        <a href="{{ url_for('products') }}" aria-current="page">{{ t.products }}</a>
+    </nav>
+    <div class="language-menu">
+        <label for="language-select" aria-hidden="true">&#127760;</label>
+        <select id="language-select" aria-label="Language" onchange="window.location.href='/language/' + this.value">
+        {% for code, name in languages.items() %}
+        <option value="{{ code }}" {% if lang == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+        </select>
+    </div>
+</header>
+
+<section class="products-heading">
+    <p class="eyebrow">LAMCO1 STEEL FACTORY LTD</p>
+    <h1>{{ t.our_products }}</h1>
+    <p>{{ t.hero_text }}</p>
+</section>
+
+<main class="products-container">
+
+    <div class="products-grid">
+
+        {% for product in products %}
+
+        <article class="product-card">
+
+            {% if product.image %}
+            <a class="product-image-link" href="{{ url_for('product_details', product_id=product.id) }}" aria-label="{{ t.view_details }}: {{ product.name }}">
+                <img
+                    src="{{ url_for('static', filename='images/products/' ~ product.image) }}"
+                    alt="{{ product.name }}"
+                    class="product-image"
+                    loading="lazy"
+                >
+            </a>
+            {% elif product.illustration %}
+            <div class="product-illustration" role="img" aria-label="{{ t.illustration_note }}">
+                <img src="{{ url_for('static', filename='images/illustrations/' ~ product.illustration) }}" alt="{{ t.illustration_note }}" loading="lazy">
+                <span>{{ t.illustration_note }}</span>
+            </div>
+            {% else %}
+            <div class="product-image-placeholder" role="img" aria-label="{{ t.no_image }}">
+                <span>{{ t.no_image }}</span>
+            </div>
+            {% endif %}
+
+            <div class="product-info">
+
+                <h2 class="product-name" lang="en" dir="ltr">{{ product.name }}</h2>
+                <p class="product-ar" lang="ar" dir="rtl">{{ product.name_ar }}</p>
+
+                <p class="product-specs" lang="{{ 'en' if product.specs else lang }}" dir="{{ 'ltr' if product.specs or lang != 'ar' else 'rtl' }}">{{ product.specs or t.specs_unavailable }}</p>
+
+                <a class="product-link"
+                   href="{{ url_for('product_details', product_id=product.id) }}">
+                    {{ t.view_details }} <span aria-hidden="true">&#8594;</span>
+                </a>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+</main>
+
+<footer class="products-footer">
+    <h3>LAMCO1 STEEL FACTORY LTD</h3>
+    <p>STRONGER STEEL. BRIGHTER FUTURE.</p>
+    <p>Jeddah, Third Industrial City, Saudi Arabia</p>
+    <p><a href="tel:+966505580244">0505580244</a> | <a href="mailto:lamco@outlook.sa">lamco@outlook.sa</a></p>
+</footer>
+
+</body>
+</html>

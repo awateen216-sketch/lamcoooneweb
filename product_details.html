@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a2342">
+    <title>{{ product.name }} | LAMCO1</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="{{ url_for('home') }}">LAMCO<span>1</span></a>
+    <nav aria-label="Main navigation">
+        <a href="{{ url_for('home') }}">{{ t.home }}</a>
+        <a href="{{ url_for('products') }}">{{ t.products }}</a>
+    </nav>
+    <div class="language-menu">
+        <label for="language-select" aria-hidden="true">&#127760;</label>
+        <select id="language-select" aria-label="Language" onchange="window.location.href='/language/' + this.value">
+        {% for code, name in languages.items() %}
+        <option value="{{ code }}" {% if lang == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+        </select>
+    </div>
+</header>
+
+<main class="products-container product-details-page">
+    <p class="detail-back"><a href="{{ url_for('products') }}">&#8592; {{ t.products }}</a></p>
+
+    <div class="detail-overview">
+        {% if product.image %}
+        <div class="detail-image-frame">
+            <img
+                src="{{ url_for('static', filename='images/products/' ~ product.image) }}"
+                alt="{{ product.name }}"
+                class="product-image"
+            >
+        </div>
+        {% elif product.illustration %}
+        <div class="detail-product-illustration" role="img" aria-label="{{ t.illustration_note }}">
+            <img src="{{ url_for('static', filename='images/illustrations/' ~ product.illustration) }}" alt="{{ t.illustration_note }}">
+            <span>{{ t.illustration_note }}</span>
+        </div>
+        {% else %}
+        <div class="detail-image-placeholder" role="img" aria-label="{{ t.no_image }}">
+            <span>{{ t.no_image }}</span>
+        </div>
+        {% endif %}
+
+        <div class="detail-product-copy">
+            <h1 class="product-name" lang="en" dir="ltr">{{ product.name }}</h1>
+            <p class="product-ar" lang="ar" dir="rtl">{{ product.name_ar }}</p>
+            <p class="detail-product-description" lang="{{ 'en' if product.specs else lang }}" dir="{{ 'ltr' if product.specs or lang != 'ar' else 'rtl' }}">{{ product.specs or t.specs_unavailable }}</p>
+        </div>
+    </div>
+
+    <section class="detail-information" aria-labelledby="specifications-title">
+        <div>
+            <p class="eyebrow">{{ t.our_products }}</p>
+            <h2 id="specifications-title">{{ t.specifications }}</h2>
+        </div>
+        <ul>
+            <li lang="{{ 'en' if product.specs else lang }}" dir="{{ 'ltr' if product.specs or lang != 'ar' else 'rtl' }}">{{ product.specs or t.specs_unavailable }}</li>
+        </ul>
+    </section>
+
+    <section class="detail-contact-block" aria-labelledby="contact-title">
+        <div>
+            <p class="eyebrow">{{ t.contact }}</p>
+            <h2 id="contact-title">{{ t.contact }}</h2>
+        </div>
+        <div class="detail-contact-links">
+            <p>Phone: <a href="tel:+966505580244">0505580244</a></p>
+            <p>Email: <a href="mailto:lamco@outlook.sa">lamco@outlook.sa</a></p>
+        </div>
+    </section>
+
+    <section class="product-options" aria-labelledby="product-options-title">
+        <h2 id="product-options-title">{{ t.quote_options_title }}</h2>
+        <form id="quote-form" onsubmit="requestQuote(event)">
+            {% for field in product.quote_fields %}
+            <label for="quote-field-{{ loop.index }}">{{ t[field.key] }}</label>
+            {% if field.type == "select" %}
+            <select id="quote-field-{{ loop.index }}" data-quote-field data-label="{{ t[field.key] }}">
+                <option value="">{{ t.quote_select }}</option>
+                {% for option in field.options %}
+                <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            {% else %}
+            <input
+                id="quote-field-{{ loop.index }}"
+                data-quote-field
+                data-label="{{ t[field.key] }}"
+                type="{{ field.type }}"
+                {% if field.min is defined %}min="{{ field.min }}"{% endif %}
+                {% if field.max is defined %}max="{{ field.max }}"{% endif %}
+                {% if field.step is defined %}step="{{ field.step }}"{% endif %}
+                {% if field.unit is defined %}data-unit="{{ field.unit }}"{% endif %}
+                {% if field.hint %}placeholder="{{ field.hint }}" title="{{ t.quote_range }} {{ field.hint }}"{% endif %}
+            >
+            {% if field.hint and field.type == "number" %}<small>{{ t.quote_range }} {{ field.hint }}</small>{% endif %}
+            {% endif %}
+            {% endfor %}
+
+            <label for="quantity">{{ t.quote_quantity }}</label>
+            <input id="quantity" name="quantity" data-quantity type="number" min="1" step="1">
+
+            <label for="quote-notes">{{ t.quote_notes }}</label>
+            <textarea id="quote-notes" data-notes rows="4"></textarea>
+
+            <button class="button detail-quote" type="submit">{{ t.quote }}</button>
+        </form>
+    </section>
+</main>
+
+<footer class="products-footer">
+    <h3>LAMCO1 STEEL FACTORY LTD</h3>
+    <p>STRONGER STEEL. BRIGHTER FUTURE.</p>
+    <p>Jeddah, Third Industrial City, Saudi Arabia</p>
+</footer>
+
+<script>
+function requestQuote(event) {
+    event.preventDefault();
+    const form = document.getElementById("quote-form");
+
+    const productName = {{ product.name | tojson }};
+    const productArabicName = {{ product.name_ar | tojson }};
+    const productSpecs = {{ (product.specs or t.specs_unavailable) | tojson }};
+    const quoteProductLabel = {{ t.quote_product | tojson }};
+    const quoteSpecsLabel = {{ t.quote_specs | tojson }};
+    const quoteQuantityLabel = {{ t.quote_quantity | tojson }};
+    const quoteButtonLabel = {{ t.quote | tojson }};
+    const quoteDetails = Array.from(form.querySelectorAll("[data-quote-field]"))
+        .filter((field) => field.value)
+        .map((field) => `${field.dataset.label}: ${field.value}${field.dataset.unit ? ` ${field.dataset.unit}` : ""}`);
+    const quantity = form.querySelector("[data-quantity]").value;
+    const notes = form.querySelector("[data-notes]").value.trim();
+    const message = [
+        {{ t.quote_request_intro | tojson }},
+        quoteProductLabel + ": " + productName + " / " + productArabicName,
+        ...(productSpecs ? [quoteSpecsLabel + ": " + productSpecs] : []),
+        ...quoteDetails,
+        ...(quantity ? [quoteQuantityLabel + ": " + quantity] : []),
+        ...(notes ? [{{ t.quote_notes | tojson }} + ": " + notes] : []),
+    ].join("\n");
+
+    window.location.href =
+        "mailto:lamco@outlook.sa?subject=" +
+        encodeURIComponent(productName + " - " + quoteButtonLabel) +
+        "&body=" + encodeURIComponent(message);
+}
+</script>
+
+</body>
+</html>

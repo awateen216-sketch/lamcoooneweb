@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171a1b">
+  <title>LAMCO1 Steel Factory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="{{ url_for('home') }}" aria-label="LAMCO1 home">LAMCO<span>1</span></a>
+    <nav aria-label="Main navigation">
+      <a href="{{ url_for('home') }}">{{ t.home }}</a>
+      <a href="{{ url_for('home') }}#about">{{ t.about }}</a>
+      <a href="{{ url_for('products') }}">{{ t.products }}</a>
+      <a href="{{ url_for('home') }}#contact">{{ t.contact }}</a>
+    </nav>
+    <div class="language-menu">
+      <label for="language-select" aria-hidden="true">&#127760;</label>
+      <select id="language-select" aria-label="Language" onchange="window.location.href='/language/' + this.value">
+        {% for code, name in languages.items() %}
+        <option value="{{ code }}" {% if lang == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="tagline">LAMCO1 STEEL FACTORY LTD <span></span> JEDDAH, SAUDI ARABIA</p>
+        <h1 id="hero-title">{{ t.hero_title }}</h1>
+        <p class="description">{{ t.hero_text }}</p>
+        <a class="button" href="#products">{{ t.explore }} <span aria-hidden="true">&#8594;</span></a>
+      </div>
+      <p class="hero-index" aria-hidden="true">01 <span>/</span> BUILT TO LAST</p>
+    </section>
+
+    <section id="about" class="info-section about-info">
+      <h2>{{ t.about }}</h2>
+      <h3>LAMCO1 Steel Factory LTD</h3>
+      <p>{{ t.about_description }}</p>
+      <p>{{ t.about_location }}</p>
+    </section>
+
+    <section id="quality" class="info-section quality-section">
+      <h2>{{ t.quality_title }}</h2>
+      <p>{{ t.quality_description }}</p>
+      <p>{{ t.quality_standards }}</p>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / {{ t.our_products }}</p>
+            <h2>Steel solutions,<br>built around your project.</h2>
+          </div>
+          <p class="section-note">Reliable components for the spaces and systems people depend on.</p>
+        </div>
+        <div class="products">
+          {% for product in products %}
+          <article class="product">
+            <span class="product-number">{{ "%02d"|format(loop.index) }}</span>
+            <a class="featured-product-image" href="{{ url_for('product_details', product_id=product.id) }}" aria-label="{{ t.view_details }}: {{ product.name }}">
+              <img src="{{ url_for('static', filename='images/products/' ~ product.image) }}" alt="{{ product.name }}" loading="lazy">
+            </a>
+            <div>
+              <h3 class="product-name" lang="en" dir="ltr"><a href="{{ url_for('product_details', product_id=product.id) }}">{{ product.name }}</a></h3>
+              <p class="product-ar" lang="ar" dir="rtl">{{ product.name_ar }}</p>
+              <p class="product-specs">{{ product.specs }}</p>
+            </div>
+            <a class="product-arrow" href="{{ url_for('product_details', product_id=product.id) }}" aria-label="{{ t.view_details }}: {{ product.name }}">&#8599;</a>
+          </article>
+          {% endfor %}
+        </div>
+        <a class="button catalog-button" href="{{ url_for('products') }}">{{ t.our_products }} <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section section-wrap">
+      <h2>{{ t.contact }}</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h3>📞 {{ t.contact_number }}</h3>
+          <a href="tel:+966505580244">0505580244</a>
+        </div>
+        <div class="contact-item">
+          <h3>✉️ {{ t.email }}</h3>
+          <a href="mailto:lamco@outlook.sa">lamco@outlook.sa</a>
+        </div>
+        <div class="contact-item">
+          <h3>🛠️ {{ t.technical_support }}</h3>
+          <a href="mailto:lamciooneit@gmail.com">lamciooneit@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <h3>📍 {{ t.location_label }}</h3>
+          <p>{{ t.location }}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#home">LAMCO<span>1</span></a>
+    <p>LAMCO1 STEEL FACTORY LTD <span>STRONGER STEEL. BRIGHTER FUTURE.</span></p>
+    <a class="back-to-top" href="#home" aria-label="Back to top">&#8593;</a>
+  </footer>
+</body>
+</html>

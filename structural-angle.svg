@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Structural steel angle illustration</title>
+  <desc id="desc">An original isometric illustration of a generic L-shaped structural steel angle. Illustrative, not a LAMCO product photograph or dimensional drawing.</desc>
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#f8fafb"/><stop offset="1" stop-color="#e6ebef"/></linearGradient>
+    <linearGradient id="top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".35" stop-color="#dfe5e9"/><stop offset=".72" stop-color="#aebac3"/><stop offset="1" stop-color="#f4f6f7"/></linearGradient>
+    <linearGradient id="front" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e7ecef"/><stop offset="1" stop-color="#9aa8b3"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8796a1"/><stop offset=".5" stop-color="#d9e0e5"/><stop offset="1" stop-color="#71818d"/></linearGradient>
+    <filter id="shadow" x="-.2" y="-.2" width="1.5" height="1.6"><feGaussianBlur stdDeviation="20"/></filter>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <ellipse cx="630" cy="560" rx="400" ry="65" fill="#34495a" opacity=".16" filter="url(#shadow)"/>
+  <path d="M260 463 775 235 970 332 455 562Z" fill="url(#edge)" stroke="#74838f" stroke-width="4"/>
+  <path d="M260 463 455 562 455 490 260 392Z" fill="url(#front)" stroke="#778792" stroke-width="4"/>
+  <path d="M455 562 970 332 970 260 455 490Z" fill="url(#front)" stroke="#778792" stroke-width="4"/>
+  <path d="M260 392 775 163 970 260 455 490Z" fill="url(#top)" stroke="#75848f" stroke-width="4"/>
+  <path d="M260 392 775 163 775 234 260 463Z" fill="url(#top)" stroke="#75848f" stroke-width="4"/>
+  <path d="M260 392 455 490 455 562 260 463Z" fill="url(#front)" stroke="#75848f" stroke-width="4"/>
+  <path d="M294 395 766 185M477 488 937 284" fill="none" stroke="#fff" stroke-width="7" opacity=".75"/>
+  <path d="M455 490 970 260" fill="none" stroke="#687884" stroke-width="5" opacity=".8"/>
+  <path d="M327 408 327 433M888 294 888 319" stroke="#74838f" stroke-width="3" opacity=".7"/>
+</svg>
